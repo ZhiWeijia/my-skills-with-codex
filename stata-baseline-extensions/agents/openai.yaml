@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stata Baseline Extensions"
+  short_description: "Audited empirical extensions from a fixed baseline"
+  default_prompt: "Use $stata-baseline-extensions to extend this project's fixed baseline into a reproducible empirical test with audited samples, versioned outputs and clear method notes."
