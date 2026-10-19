@@ -1,0 +1,6 @@
+interface:
+  display_name: "Top Accounting & Finance Paper Reader"
+  short_description: "Read papers with original models and replication-level detail"
+  default_prompt: "Use $read-accounting-finance-paper to read my supplied article in English, with a bilingual abstract, detailed variable construction, original empirical models, and every main-text table."
+policy:
+  allow_implicit_invocation: true
