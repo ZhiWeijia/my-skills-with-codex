@@ -39,6 +39,28 @@ If Poppler is not on PATH, add `--pdftoppm <absolute-path-to-pdftoppm>`. The scr
 
 Equation source images can use the same renderer in a separate inventory/output directory. IDs and labels are merely identifiers; keep equation captures out of the main table inventory.
 
+## Original X/Y definition and construction evidence
+
+Maintain a separate `variable-evidence-regions.json` and output folder for definition sentences, proxy descriptions, construction passages and formulas. The existing renderer accepts these using the same `tables` / `parts` manifest structure: the identifiers do not require that a capture be a table. Keep this manifest separate from `table-regions.json`; only main-text tables belong in the table walkthrough.
+
+Include every relevant passage inventoried under report-contract sections 5–6, including data-section descriptions, footnotes, table notes and supplied appendices. Choose crops that retain full sentences, formulas, symbols, qualifications and any continuations; use multiple source fragments when needed. Do not replace source images with recreated text or tables. Inspect each capture against the original page.
+
+Embed the resulting images within the `data-sources` and `variable-construction` HTML fragments. Use the existing zoom control for readable evidence:
+
+```html
+<figure id="x-definition-evidence">
+  <p class="label">Original PDF capture — full English variable name (abbreviation)</p>
+  <button class="image-zoom" type="button" aria-label="Enlarge original variable definition">
+    <img src="variable-evidence/x-definition-01.png" alt="Original definition, printed and PDF page locator">
+  </button>
+  <figcaption class="source">Exact source location, outside the original evidence.</figcaption>
+</figure>
+```
+
+This is a structural example: replace its labels, path and locator with verified source evidence. Keep the images within the report JSON folder so the builder can inline them. Formula source images can instead use the equation object's `image` field. When a PDF is supplied, X/Y definition-formula images are required even if their transcription is certain.
+
+For the permitted text-extract alternative, HTML-escape verified original text and place it in a `blockquote` labeled `Direct quotation — verbatim`, with the locator outside. Preserve the text, punctuation and symbols; do not paraphrase, shorten, correct, expand acronyms inside the quote, or stitch different passages into one quote. Compare extracted text character by character with the rendered source; if the extraction is unreliable, use the original capture. Keep separate interpretations outside the evidence without rewriting the definition or construction. Full-name expansions belong in adjacent authored labels; a glossary or hover text does not satisfy the every-occurrence expansion rule for authored text.
+
 ## Authoring the report
 
 Write `report.json` as UTF-8. Its `sections` object has exactly these nine keys, each holding an English HTML fragment:
@@ -118,7 +140,9 @@ Allowed provenance labels:
 - `Restated from the authors' model description`
 - `Original equation image; transcription uncertain`
 
-For a source image, add `image` with a PNG/JPEG/WebP path relative to `report.json` and optional `note` describing uncertainty. Copy verified equation crops into that folder when necessary. An uncertain equation must include its original image. If the notation cannot be transcribed reliably, omit `mathml` and `tex`, show the original image and explain the uncertainty. Do not fabricate a readable transcription to satisfy the template. An original image may also accompany a verified MathML transcription for comparison.
+The packager's accepted provenance labels do not override the report contract. `Restated from the authors' verbal definition` must not be used to reconstruct X/Y definitions, proxies or their construction. Use their original evidence instead; any empirical-model restatement is separate from these definitions.
+
+For a source image, add `image` with a PNG/JPEG/WebP path relative to `report.json` and optional `note` describing uncertainty. Copy verified equation crops into that folder when necessary. An uncertain equation must include its original image; X/Y definition and construction formulas also require original images whenever a PDF is supplied, even when transcription is certain. If the notation cannot be transcribed reliably, omit `mathml` and `tex`, show the original image and explain the uncertainty. Do not fabricate a readable transcription to satisfy the template. For other equations, an original image may also accompany a verified MathML transcription for comparison.
 
 ## Build and verify
 
@@ -129,5 +153,7 @@ python <skill>/scripts/build_report.py --report <report.json> --captures <captur
 The output filename must be new; use a new revision name for changes. Omit `--captures` only for a report explicitly documenting no available table images. Local images in narrative fragments are inlined, and all image assets must be within the report JSON folder or capture folder respectively. The final HTML has no runtime dependency on those files.
 
 Open the output and check wide and narrow screens. Verify all ten navigation targets, every formula and image, source locators, readable tables, full notes, zoom/close/actual-size controls, and network-independent display. Compare table count/order and panel completeness with the manuscript inventory. Check that only the Chinese abstract is translated; original proper names remain untouched. Formula fidelity, language, source accuracy, and completeness require human/model review beyond the structural checks.
+
+Also reconcile the X/Y evidence inventory with the data-section and variable-card evidence blocks: every supplied definition/proxy/construction passage and formula must be represented, with no paraphrased substitute or clipped qualification. Check all authored X/Y/proxy/setting abbreviation occurrences against the full-name register, while leaving source quotations, images and original formula notation unchanged. The current builder cannot determine semantic evidence completeness or acronym correctness; successful packaging is not proof of either.
 
 Deliver the HTML through an absolute file link and a concise English analysis summary. Use the app's file-opening tool when available. Keep verified source URLs as normal descriptive links; do not publish the report or transmit the supplied paper elsewhere.

@@ -1,6 +1,8 @@
 # Report contract
 
-Read this only after the user has supplied the article's full text. These are report requirements, not a license to infer undisclosed information. Use English except for the Chinese abstract translation. Preserve the paper's names and notation. Quotations, paraphrases, and verbal-definition restatements must be identifiable and source-located.
+Read this only after the user has supplied the article's full text. These are report requirements, not a license to infer undisclosed information. Use English except for the Chinese abstract translation. Preserve the paper's names and notation. Distinguish and source-locate original evidence and authored explanation. X/Y definitions, proxies, and construction descriptions must be screenshots or verbatim extracts, never paraphrases or verbal-definition restatements.
+
+Throughout authored analysis, apply the `SKILL.md` rule **full English name (abbreviation) at every occurrence** for article-specific X/Y, proxy, and setting abbreviations. This includes headings, diagram nodes, captions and authored table cells. Keep original quotations, screenshots, titles/labels used as evidence, and equation notation intact; put the expanded name in an adjacent authored label or legend. Do not invent missing full names.
 
 ## 1. Article Information
 
@@ -33,22 +35,35 @@ Use English arrow diagrams, e.g. `Stated premise → Mechanism → Behavioral re
 
 ## 5. Data Sources and Sample Construction
 
-Use a source matrix with variable role, original variable name, database/source, raw inputs or fields if reported, coverage years, estimation years, and unit of observation. Separate X, Y, important controls, alternative measures, mechanisms, and identification variables. Sources may be administrative records, hand collection, surveys, filings, or text corpora rather than databases.
+Use a source matrix with variable role, original variable name, database/source, raw inputs or fields if reported, coverage years, estimation years, and unit of observation. Separate X, Y, important controls, alternative measures, mechanisms, and identification variables. Sources may be administrative records, hand collection, surveys, filings, or text corpora rather than databases. For X/Y-related entries, use the exact source wording or link to an evidence block within this section; an authored source matrix is an index, not a substitute for the original passages.
 
-Explain initial population, inclusion/exclusion criteria, linking/merge keys, date alignment, duplicate treatment, and sample losses/counts **as disclosed**. Record periods separately when different variables or tables use different samples. Do not use a database's known historical coverage as the article's coverage.
+For every passage in the article's data/sample discussion that contributes to constructing X or Y or their proxies, reproduce the full relevant sentences and formulas as original screenshots or verified verbatim extracts **in this data section**. Include data sources and fields, population and filters, merges, date alignment, duplicate handling, sample losses, aggregation, measurement windows, transformations, scaling, and missing/extreme-value treatment wherever those are described. Do not replace them with a summary or reorganized recipe. Shared evidence may be linked from multiple variables, but must remain visibly available in this section.
+
+Other sample context may be explained **as disclosed**, separately from the protected construction evidence. Record periods separately when different variables or tables use different samples. Do not use a database's known historical coverage as the article's coverage.
 
 ## 6. Variable Construction — Replication-Level Definitions
 
 Make a separate variable card for each core X and Y, every analyzed alternative measure, important control, mechanism variable, and variable essential to identification (treatment, post, instrument, running variable, event time, etc.). Group only truly identical construction rules and cite their shared scope.
 
-Each card includes:
+### Original evidence for X and Y
+
+For each X and Y, cover both the underlying construct and every primary or alternative proxy, including any component or estimated input needed to build it. Search the full supplied article, not just the variable-definition subsection: data/sample sections, measurement discussions, equations, footnotes, table notes, variable appendices, and supplied supplementary material can each contain required evidence.
+
+- Make a coverage inventory linking each variable/proxy, each defining or construction passage, and its source location to the report evidence block. Include every concrete definition and construction description in the supplied material. Distinct or conflicting versions must appear separately; identical repeated passages may share an evidence block only if all their locations are recorded.
+- Put an **Original evidence — verbatim** block at the start of each X/Y card. Use original PDF crops or exact source-text extracts for all relevant sentences; include complete definitional sentences, necessary antecedent sentences, qualifications, formula numbering, symbol definitions, footnotes and continued portions. Use as many separately located blocks as needed.
+- Use original PDF captures for every X/Y definition/construction formula when a PDF is supplied. Verified MathML/LaTeX transcriptions may accompany, never replace, those captures. If the supplied full text has no PDF, preserve the exact supplied formula text and label the absence of a screenshot; do not invent one.
+- Verbatim means no paraphrase, summary, translation, shortening with ellipses, bracketed insertions, silent typo correction, abbreviation expansion, normalized numbers/symbols, or conversion of prose into a new equation or ordered recipe. Preserve the source's wording and within-passage order. Keep different source passages separate. If extraction or optical character recognition cannot preserve the printed text faithfully, use the screenshot rather than repair a quotation by guessing.
+- Add the full English name and parenthesized abbreviation outside the evidence, not inside it. Put locators outside the quoted text: printed/PDF pages, section, equation, table/panel/note or appendix.
+- Any separate explanation may discuss the variable's role in the argument or test, but must not rewrite or summarize its definition, proxy or construction. Missing choices and source inconsistencies belong in a separate gap note. Do not reconcile conflicting definitions on the authors' behalf.
+
+Each card includes the following fields. For X/Y, proxies and construction components, populate definition/construction fields with original evidence or links to the card's evidence blocks, not authored restatements. The field structure is an index to evidence, not permission to rewrite it.
 
 | Field | Required evidence |
 | --- | --- |
 | Original name and role | Exact variable label, meaning, unit of observation, and interpretation of larger values |
 | Source inputs | Source/database, exact field codes when reported, components, data vintage when stated |
-| Original definition/formula | Original equation and number, or quoted verbal definition; every symbol defined |
-| Construction sequence | Ordered raw-to-final steps: linkage, filtering, grouping, aggregation, transformations |
+| Original definition/formula | All original defining sentences and formulas as screenshots or verified verbatim extracts; retain numbering and the authors' symbol definitions |
+| Construction sequence | Original construction passages in source order, including linkage, filtering, grouping, aggregation and transformations; no authored X/Y recipe |
 | Timing | Measurement date, fiscal/calendar alignment, windows, lags/leads, event-time alignment |
 | Scale and units | Numerator/denominator, levels vs ratios vs percentages, scaling factors, currency/base year if reported |
 | Transformations | Exact log form, standardization/reference population, demeaning, residualization, industry adjustments |
@@ -59,7 +74,7 @@ Each card includes:
 
 For a composite index, list components, signs, weights, normalization, and aggregation. For text-based measures, include document selection, dictionary/model/procedure and version if stated, counting/normalization and aggregation. For estimated measures, include the first-stage model, estimation population/window, and how fitted values/residuals become the measure. Apply these only when relevant; do not create new requirements for unrelated variables.
 
-Preserve original formulas, notation, sums, timing, denominators, and definitions. If the article supplies only prose, an ordered recipe is acceptable. Any mathematical reconstruction must be labeled `Restated from the authors' verbal definition` and contain no new assumptions. An ambiguous log definition, unreported database code, unspecified winsorization order, or missing matching key stays a documented gap. Never assert complete replicability solely because a detailed-looking card was produced.
+Preserve original formulas, notation, sums, timing, denominators, and definitions. If the article supplies only prose for X/Y, quote or screenshot that prose exactly; do not produce a replacement recipe or formula. For other variables outside this original-evidence requirement, any verbal restatement must be labeled and introduce no new assumptions. An ambiguous log definition, unreported database code, unspecified winsorization order, or missing matching key stays a documented gap. Never assert complete replicability solely because a detailed-looking card was produced.
 
 ## 7. Institutional Setting
 
@@ -73,7 +88,7 @@ For every model, explain the outcome, regressors, controls, fixed effects, index
 
 Describe the identifying comparison/variation and the authors' claimed identifying assumptions separately from the regression equation. Include the necessary design-specific components: IV first/second stages and stated instrument rationale; DID treatment/timing/comparison; event-study reference period/window/binning; RD running variable/cutoff/bandwidth/specification; matching variables and procedure, when those designs are used and disclosed. Do not infer software, estimator defaults, or undisclosed diagnostics.
 
-If no equation is printed, label the absence. An optional reconstruction must say `Restated from the authors' model description`. Compare each transcription with the source image. Preserve readable LaTeX as a transcription for inspection; do not call it the authors' actual source code. If a symbol cannot be read reliably, show a source crop and flag the uncertainty instead of presenting a guessed exact equation.
+If no equation is printed, label the absence. An optional empirical-model reconstruction must say `Restated from the authors' model description`; this does not permit reconstructing X/Y definitions or proxies, which follow section 6. Compare each transcription with the source image. Preserve readable LaTeX as a transcription for inspection; do not call it the authors' actual source code. If a symbol cannot be read reliably, show a source crop and flag the uncertainty instead of presenting a guessed exact equation.
 
 For noncausal studies, describe the reported associations and design without inventing a causal identification claim. For theoretical/review papers, preserve applicable sections and explain non-applicability.
 
